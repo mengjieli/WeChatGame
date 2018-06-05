@@ -1,5 +1,11 @@
 include Binding.js
 
+support type :
+```number,bool,string,var```
+
+support operate ：
+```+ - * /  %  !   <<  >>  >>>  >  <   >=  <=  ==  ===  !==  !=   &   ~  ^   |   &&  ||   ?:    ()```
+
 ### Examples
 
 1. simple expr
