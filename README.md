@@ -1,3 +1,8 @@
+
+如果觉得代码库太大，可以参考我以前写的表达式分析算法的文章
+https://blog.csdn.net/jiexiaopei_2004/article/details/41546673
+
+
 include Binding.js
 
 support type :
@@ -37,3 +42,4 @@ console.log(binding.eval("add(Math.sqrt($0), 2)",[v0],{add:addFunction})); //con
 console.log(binding.eval("3 > 2 ? true : false")); //console true
 ```
 when this project receive 100 star,i will support define var in the script, and so on.
+
