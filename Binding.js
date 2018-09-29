@@ -128,7 +128,7 @@ var binding = {};
                     return this.expr1;
                 }
                 if (this.type == "number") {
-                    return this.expr1;
+                    return +this.expr1;
                 }
                 if (this.type == "boolean") {
                     return this.expr1;
@@ -155,10 +155,16 @@ var binding = {};
                     return this.expr1.getValue(params) % this.expr2.getValue(params);
                 }
                 if (this.type == "+") {
-                    return this.expr1.getValue(params) + this.expr2.getValue(params);
+                    return (params && params.inverse ? -1 : 1)*this.expr1.getValue(params) + this.expr2.getValue(params);
                 }
                 if (this.type == "-") {
-                    return this.expr1.getValue(params) - this.expr2.getValue(params);
+                    if(this.expr2.type == "+") {
+                        return this.expr1.getValue({inverse:true}) - this.expr2.getValue({inverse:true});
+                    }
+                    if(this.expr2.type == "-") {
+                        return this.expr1.getValue({inverse:true}) + this.expr2.getValue({inverse:true});
+                    }
+                    return (params && params.inverse ? -1 : 1)*this.expr1.getValue(params) - this.expr2.getValue(params);
                 }
                 if (this.type == "<<") {
                     return this.expr1.getValue(params) << this.expr2.getValue(params);
@@ -1554,7 +1560,7 @@ var binding = {};
         {
             funcs = {};
         }
-        
+
         new Binding(obj,[obj,funcs],"value","{" + expr + "}");
         return obj.value;
     }
